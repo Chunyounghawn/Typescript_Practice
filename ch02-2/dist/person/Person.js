@@ -22,20 +22,23 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var Person_1 = __importStar(require("./person/Person"));
-var chance_1 = __importDefault(require("chance"));
-var R = __importStar(require("ramda"));
-var chance = new chance_1.default();
-var persons = R.range(0, 2).map(function (n) { return new Person_1.default(chance.name(), chance.age()); });
-console.log(persons);
-var testMakePerson = function () {
-    var jane = (0, Person_1.makePerson)("Jane");
-    var jack = (0, Person_1.makePerson)("Jack");
-    console.log(jane, jack);
+exports.makePerson = void 0;
+var U = __importStar(require("../utils/makeRandomNumber"));
+var Person = /** @class */ (function () {
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    return Person;
+}());
+exports.default = Person;
+var makePerson = function (name, age) {
+    if (age === void 0) { age = U.makeRandomNumber(); }
+    return ({
+        name: name,
+        age: age,
+    });
 };
-testMakePerson();
-//# sourceMappingURL=index.js.map
+exports.makePerson = makePerson;
+//# sourceMappingURL=Person.js.map
